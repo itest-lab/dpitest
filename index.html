@@ -41,7 +41,7 @@
         function getScreenInfo() {
             const info = {
                 '画面サイズ (物理)': `${screen.width * devicePixelRatio} x ${screen.height * devicePixelRatio}`,
-                '画面サイズ (論理)': `${screen.width} x ${screen.height}`,
+/*                '画面サイズ (論理)': `${screen.width} x ${screen.height}`,
                 'devicePixelRatio': devicePixelRatio,
                 '画面利用可能サイズ': `availWidth: ${screen.availWidth}, availHeight: ${screen.availHeight}`,
                 '画面アスペクト比': `${(screen.width / screen.height).toFixed(2)}:1`,
@@ -49,6 +49,7 @@
                 'ドキュメント表示領域サイズ': `clientWidth: ${document.documentElement.clientWidth}, clientHeight: ${document.documentElement.clientHeight}`,
                 'ウィンドウ外サイズ': `outerWidth: ${window.outerWidth}, outerHeight: ${window.outerHeight}`,
                 'ウィンドウ内サイズ': `innerWidth: ${window.innerWidth}, innerHeight: ${window.innerHeight}`
+*/
             };
 
             const lines = Object.entries(info).map(([key, value]) => `${key}: ${value}`);
