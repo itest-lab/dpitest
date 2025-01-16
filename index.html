@@ -3,17 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>背景画像の設定</title>
+    <title>画面解像度情報</title>
     <style>
         body {
-            background-image: url('https://gdurl.com/FcGX');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <!-- コンテンツをここに追加 -->
+    <h1>画面解像度情報</h1>
+    <pre id="info"></pre>
+    <button onclick="copyToClipboard()">コピー</button>
+
+    <script>
+        function getScreenInfo() {
+            const info = {
+                '画面サイズ (物理)': `${screen.width * devicePixelRatio} x ${screen.height * devicePixelRatio}`,
+                '画面サイズ (論理)': `${screen.width} x ${screen.height}`,
+                'devicePixelRatio': devicePixelRatio,
+                '画面利用可能サイズ': `availWidth: ${screen.availWidth}, availHeight: ${screen.availHeight}`,
+                '画面アスペクト比': `${(screen.width / screen.height).toFixed(2)}:1`,
+                'ドキュメント全体サイズ': `clientWidth: ${document.body.clientWidth}, clientHeight: ${document.body.clientHeight}`,
+                'ドキュメント表示領域サイズ': `clientWidth: ${document.documentElement.clientWidth}, clientHeight: ${document.documentElement.clientHeight}`,
+                'ウィンドウ外サイズ': `outerWidth: ${window.outerWidth}, outerHeight: ${window.outerHeight}`,
+                'ウィンドウ内サイズ': `innerWidth: ${window.innerWidth}, innerHeight: ${window.innerHeight}`
+            };
+
+            const lines = Object.entries(info).map(([key, value]) => `${key}: ${value}`);
+            return lines.join('\n');
+        }
+
+        function copyToClipboard() {
+            const info = document.getElementById('info').textContent;
+            navigator.clipboard.writeText(info).then(() => {
+                alert('情報をコピーしました！');
+            }).catch(err => {
+                alert('コピーに失敗しました: ' + err);
+            });
+        }
+
+        document.getElementById('info').textContent = getScreenInfo();
+    </script>
 </body>
 </html>
